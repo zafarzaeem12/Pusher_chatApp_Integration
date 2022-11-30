@@ -27,7 +27,7 @@ const ChatList = (props) => {
       userChat.map((data) => {
         return(
           <>
-            <Text style={{fontSize:20}}>{data}</Text>
+            <Text style={{fontSize:27}}>{data}</Text>
             <Text>{hotmessages+"" +name}</Text>
           </>
         )
