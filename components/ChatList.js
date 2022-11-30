@@ -3,17 +3,23 @@ import React,{useState , useEffect} from 'react'
 
 const ChatList = (props) => {
   const { chat , hotmessages , name } = props
-  const [allchats,Setallchats] = useState([chat]);
+  const [allchat,Setallchat] = useState([]);
   const [userChat,SetuserChat] = useState([]);
   
 
   const DataBYchat = () => {
     
     const conversation = [];
-    Setallchats([chat])
-   allchats.map((data) => {
-      return conversation.push(data)
-    })
+    conversation.push(chat)
+    // allchat.map((data) => console.log("77777777",data))
+  //   Setallchat(chat)
+  //  console.log("allchat",allchat)
+  
+
+  //  allchats.map(data => {
+  //   console.log("hhhhhhhhh",data)
+  //     return conversation.push(data)
+  //   })
     console.log("conversation",conversation)
     SetuserChat( conversation);
   }
@@ -22,13 +28,13 @@ const ChatList = (props) => {
     DataBYchat()
   },[chat])
   return (
-    <View>
+    <View style={{paddingTop:20}}>
     {
       userChat.map((data) => {
         return(
           <>
             <Text style={{fontSize:27}}>{data}</Text>
-            <Text>{hotmessages+"" +name}</Text>
+            <Text>{hotmessages+" "+name}</Text>
           </>
         )
       })

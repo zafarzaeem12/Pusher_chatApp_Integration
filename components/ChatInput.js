@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
     Pusher,
     PusherMember,
@@ -11,24 +11,15 @@ import {
 
 const ChatInput = (props) => {
 
-    const { Setchat , Sethotmessages } = props
-    const [message, Setmessages] = useState("")
+    const { Setchat , Sethotmessages,conn } = props
+    const [message, Setmessages] = useState("");
+   
+   
 
     const handleChanged = async (e) => {
         e.preventDefault();
         try {
-            const pusher = Pusher.getInstance();
-            await pusher.init({
-                apiKey: "ec15901129ab9156bc9d",
-                cluster: "ap2",
-                onEvent
-            });
-
-            await pusher.connect();
-            const y = await pusher.subscribe({
-                channelName: "my-channel"
-            });
-            const cha = y.channelName
+            const cha = conn.channelName
             const payload = {
                 message: message
             }
@@ -43,7 +34,7 @@ const ChatInput = (props) => {
             });
             const resp = await datas.json();
             console.log("dataeeeeeeeeeee", resp);
-            Setchat(resp.data)
+            Setchat(resp?.data)
             Sethotmessages(resp.message)
 
         } catch (err) {
