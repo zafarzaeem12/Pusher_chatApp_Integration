@@ -3,7 +3,13 @@ import React, { useEffect, useState} from 'react'
 import ChatList from './ChatList';
 import ChatInput from './ChatInput';
 import ChatHeader from './ChatHeader';
-
+import {
+    Pusher,
+    PusherMember,
+    PusherChannel,
+    PusherEvent
+}
+    from '@pusher/pusher-websocket-react-native';
 
 
 
@@ -11,9 +17,9 @@ const ChatScreen = (props) => {
     const { route } = props;
     const {  name } = route.params;
     const [chat , Setchat] = useState([]);
-    const [conn,Setconn] = useState("")
-
+    const [conn,Setconn] = useState("");
     const [hotmessages,Sethotmessages] = useState("");
+    
     useEffect(() => {
         const PusherConnection = async ( ) => {
             try{
@@ -37,6 +43,12 @@ const ChatScreen = (props) => {
 
         PusherConnection()
     },[])
+
+    const onEvent = (event: PusherEvent) => {
+        console.log(`Event received: ${event}`);
+        console.log("eventName", event.eventName)
+    }
+
     return (
         <View>
             <View style={{  height: 100 }}>

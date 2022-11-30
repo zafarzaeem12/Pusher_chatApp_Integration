@@ -1,12 +1,6 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState,useEffect } from 'react';
-import {
-    Pusher,
-    PusherMember,
-    PusherChannel,
-    PusherEvent
-}
-    from '@pusher/pusher-websocket-react-native';
+
 
 
 const ChatInput = (props) => {
@@ -43,11 +37,7 @@ const ChatInput = (props) => {
 
     }
 
-    const onEvent = (event: PusherEvent) => {
-        console.log(`Event received: ${event}`);
-        console.log("eventName", event.eventName)
-    }
-
+    
     return (
         <View style={{ display: "flex", flexDirection: "row" }}>
             <View style={{ width: 250, left: 10 }}>
